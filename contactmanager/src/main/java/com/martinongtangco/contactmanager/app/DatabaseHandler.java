@@ -71,7 +71,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                  new String[] { String.valueOf(id)},
                                  null,
                                  null,
-                                 null);
+                                 KEY_NAME + " ASC");
 
         if (cursor != null)
             cursor.moveToFirst();
@@ -127,7 +127,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<Contact> getAllContacts() {
         List<Contact> contacts = new ArrayList<Contact>();
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CONTACTS, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CONTACTS + " ORDER BY " + KEY_NAME + " ASC", null);
 
         if (cursor.moveToFirst()) {
             do {
